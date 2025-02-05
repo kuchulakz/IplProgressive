@@ -1,42 +1,44 @@
+
 import { Component, OnInit } from "@angular/core";
-import { IplService } from "../../services/ipl.service";
-import { Router } from "@angular/router";
 import { Team } from "../../types/Team";
 import { Cricketer } from "../../types/Cricketer";
 import { Match } from "../../types/Match";
+import { IplService } from "../../services/ipl.service";
 
 @Component({
-    selector: 'app-dashboard',
-      templateUrl: './dashboard.component.html',
-      styleUrls: ['./dashboard.component.scss']
+    selector:'app-dashboard',
+    templateUrl:'./dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit{
-    teams:Team[];
-    cricketers:Cricketer[];
-    matches:Match[];
+export class DashboardComponent implements OnInit {
+  teams: Team[] = [];
+    cricketers: Cricketer[] = [];
+    matches: Match[] = [];
 
-    constructor(private iplService:IplService, private router:Router){}
-    ngOnInit(): void {
-        this.getTeams();
-        this.getCricketers();
-        this.getMatches();
+    constructor(private iplService: IplService){}
+
+    ngOnInit(): void{
+        this.loadTeams();
+        this.loadCricketers();
+        this.loadMatches();
     }
 
-
-    getTeams(){
-        this.iplService.getAllTeams().subscribe((res:Team[])=>this.teams = res);
+    loadTeams(): void{
+        this.iplService.getAllTeams().subscribe((teams) => {
+            this.teams = teams;
+        });
     }
 
-
-    getCricketers(){
-        this.iplService.getAllCricketers().subscribe((ckts:Cricketer[])=>this.cricketers = ckts);
+    loadCricketers(): void{
+        this.iplService.getAllCricketers().subscribe((cricketers) => {
+            this.cricketers = cricketers;
+        });
     }
 
-    getMatches(){
-        this.iplService.getAllMatches().subscribe((matchs:Match[])=>this.matches = matchs);
+    loadMatches(): void{
+        this.iplService.getAllMatches().subscribe((matches) => {
+            this.matches = matches;
+        });
     }
-    
-
- 
 
 }

@@ -16,6 +16,7 @@ import { CricketerEditComponent } from "./components/cricketeredit/cricketeredit
 import { TeamEditComponent } from "./components/teamedit/teamedit.component";
 import { MatchEditComponent } from "./components/matchedit/matchedit.component";
 
+
 @NgModule({
   declarations: [
     TeamCreateComponent,
@@ -26,7 +27,8 @@ import { MatchEditComponent } from "./components/matchedit/matchedit.component";
     DashboardComponent,
     CricketerEditComponent,
     TeamEditComponent,
-    MatchEditComponent
+    MatchEditComponent,
+  
   ],
   imports: [
     CommonModule,
